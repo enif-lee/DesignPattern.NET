@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPattern.NET", "DesignPattern.NET\DesignPattern.NET.csproj", "{DC010B5F-0F04-4BAB-ACE8-004FA760EA1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPattern.NET.Test", "DesignPattern.NET.Test\DesignPattern.NET.Test.csproj", "{160E431E-70E9-4703-882D-8BAC557EFA6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC010B5F-0F04-4BAB-ACE8-004FA760EA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC010B5F-0F04-4BAB-ACE8-004FA760EA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC010B5F-0F04-4BAB-ACE8-004FA760EA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC010B5F-0F04-4BAB-ACE8-004FA760EA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160E431E-70E9-4703-882D-8BAC557EFA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160E431E-70E9-4703-882D-8BAC557EFA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160E431E-70E9-4703-882D-8BAC557EFA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160E431E-70E9-4703-882D-8BAC557EFA6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
