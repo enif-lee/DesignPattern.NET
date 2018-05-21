@@ -33,7 +33,7 @@
   - [ ] 상태(State)
   - [ ] 전략(Strategy)
   - [ ] 템플릿 메서드(Template Method)
-  - [ ] 방문자(Visitor)
+  - [x] [방문자(Visitor)](DesignPattern.NET/Visitor/VisitorPattern.md) - 데이터 구조와 처리를 분리하는 패턴
 
 ## 참고한 책/글/사이트들
 
