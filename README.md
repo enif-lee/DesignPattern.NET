@@ -28,7 +28,7 @@
   - [ ] 해석자(Interpreter)
   - [ ] 반복자(Iterator)
   - [ ] 중재자(Mediator)
-  - [ ] 메멘토(Memento)
+  - [x] [메멘토(Memento)](DesignPattern.NET/Memento/MementoPattern.md) - 캡슐화를 유지한 채 스냅샷을 생성/관리하는 패턴
   - [ ] 감시자(Observer)
   - [ ] 상태(State)
   - [ ] 전략(Strategy)
