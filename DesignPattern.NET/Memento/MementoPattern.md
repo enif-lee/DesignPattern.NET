@@ -12,7 +12,7 @@
 모험하면서 위치도 계속해서 변경되겠죠. 아마 예상을 하자면 아래와 같은 다이어그램이
 나오지 않을까 싶습니다.
 
-![context](images/context.png)
+![context](Images/context.png)
 
 ## Problem
 
@@ -94,7 +94,7 @@ public class Game
 
 위 코드는 아마 아래와 같은 다이어그램이 그려질 것입니다.
 
-![problem](images/problem.png)
+![problem](Images/problem.png)
 
 하지만 무언가 찜찜합니다. 모험가의 상태가 `public`하게 공개되어있는게 과연 좋은
 설계일지 생각해봐야할 것입니다. 객체의 인스턴스 필드가 `public`이라고 함은
@@ -216,7 +216,7 @@ struct StateSnapshot
 
 아마 이런식으로 구성이 될 가능성이 높습니다.
 
-![solution](images/solution.png)
+![solution](Images/solution.png)
 
 자바에 비해 넓은 수준의 접근자를 가진 C#이 조금 아쉽긴 하지만 어느정도
 감안하더라도 캡슐화의 부재가 없는 것보단 있는 편이 관리적 차원에서 훨씬 이득일 것
