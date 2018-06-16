@@ -193,7 +193,7 @@ class UsernameInput : TextInput, IComponent
 ![pattern](Images/pattern.png)
 
 - 중개자(Mediator) : 객체와 교류하는 데 필요한 인터페이스
-- 구체 중개자(Concrete Mediator) : 객체간 조화를 이뤄서 협력행동을 구현하며, 자신이 맡을 동료를 파악하고 있다.
+- 구체 중개자(Concrete Mediator) : 객체간 조화를 이뤄서 협력하는 행동을 구현하며, 자신이 맡을 동료를 파악하고 있다.
 - 동료(Colleague) : Mediator와 통신을 실행할 인터페이스, 통신의 규약(API)를 결정한다.
 - 구체 동료(Concrete Colleague) : 다른 객체와 통신을 하는 대상, 중개자를 알고 있으며 통신은 중개자를 통해 진행한다.
 
