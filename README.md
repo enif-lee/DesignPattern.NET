@@ -27,7 +27,7 @@
   - [ ] 명령(Command)
   - [ ] 해석자(Interpreter)
   - [ ] 반복자(Iterator)
-  - [ ] 중재자(Mediator)
+  - [x] [중재자(Mediator)](DesignPattern.NET/Mediator/MediatorPattern.md) - 여러 객체간의 협업관계를 중앙화하는 패턴
   - [x] [메멘토(Memento)](DesignPattern.NET/Memento/MementoPattern.md) - 캡슐화를 유지한 채 스냅샷을 생성/관리하는 패턴
   - [ ] 감시자(Observer)
   - [ ] 상태(State)
