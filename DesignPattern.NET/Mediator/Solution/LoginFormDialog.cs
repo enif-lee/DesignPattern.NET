@@ -2,17 +2,7 @@
 
 namespace DesignPattern.NET.Mediator.Solution
 {
-    interface IMediator
-    {
-        void UpdateChanges();
-    }
-
-    interface IComponent : IDisable
-    {
-        IMediator Mediator { get; set; }
-    }
-
-class LoginFormDialog : IDialog, IMediator
+    class LoginFormDialog : IDialog, IMediator
 {
     private CheckBox IsGuest { get; }
     private TextInput Username { get; }
@@ -36,38 +26,4 @@ class LoginFormDialog : IDialog, IMediator
         Login.Disable = !string.IsNullOrEmpty(Username.Value) && !string.IsNullOrEmpty(Password.Value);
     }
 }
-
-    class GuestCheckBox : CheckBox, IComponent
-    {
-        public IMediator Mediator { get; set; }
-
-        public GuestCheckBox()
-        {
-            OnClick += () => Mediator?.UpdateChanges();
-        }
-    }
-
-    class UsernameInput : TextInput, IComponent
-    {
-        public IMediator Mediator { get; set; }
-
-        public UsernameInput()
-        {
-            OnChange += () => Mediator?.UpdateChanges();
-        }
-    }
-
-    class PasswordInput : TextInput, IComponent
-    {
-        public IMediator Mediator { get; set; }
-
-        public PasswordInput()
-        {
-            OnChange += () => Mediator?.UpdateChanges();
-        }
-    }
-
-    class LoginButton : Button
-    {
-    }
 }
