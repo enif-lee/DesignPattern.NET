@@ -23,7 +23,7 @@ namespace DesignPattern.NET.Mediator.Solution
     {
         Username.Disable = !IsGuest.Checked;
         Password.Disable = !IsGuest.Checked && !string.IsNullOrEmpty(Username.Value);
-        Login.Disable = !string.IsNullOrEmpty(Username.Value) && !string.IsNullOrEmpty(Password.Value);
+        Login.Disable = !IsGuest.Checked && (string.IsNullOrEmpty(Username.Value) || string.IsNullOrEmpty(Password.Value));
     }
 }
 }

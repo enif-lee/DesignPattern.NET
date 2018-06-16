@@ -131,9 +131,9 @@ class LoginFormDialog : IDialog
 
     public void UpdateChanges()
     {
-        Username.Disable = !IsGuest.Checked;
-        Password.Disable = !IsGuest.Checked && !string.IsNullOrEmpty(Username.Value);
-        Login.Disable = !string.IsNullOrEmpty(Username.Value) && !string.IsNullOrEmpty(Password.Value);
+        Username.Disable = IsGuest.Checked;
+        Password.Disable = IsGuest.Checked && string.IsNullOrEmpty(Username.Value);
+        Login.Disable = !IsGuest.Checked && (string.IsNullOrEmpty(Username.Value) || string.IsNullOrEmpty(Password.Value));
     }
 }
 ```
