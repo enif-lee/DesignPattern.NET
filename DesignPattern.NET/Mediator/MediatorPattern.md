@@ -21,18 +21,11 @@ Guest로 로그인, 로그인 버튼, 취소 버튼이 있다고 생각해봅시
     - Password는 Username에 한 글자라도 텍스트가 입력된 경우 활성화
     - Username과 Password 모두 내용이 있는 경우에만 Login버튼 활성화
 
-그리고 개발자는 이 기획대로 컴포넌트 하나 하나 개발해 나가기 시작할 것입니다.
-
 ## Problem
 
-`UsernameInput`, `PasswordInput`, `LoginButton`, `GuestCheckbox`, `CancelButton`
-그리고 `LoginFormDialog` 클래스 혹은 객체들이 상호 연관관계가 되어 서로 알고 있어야합니다.
-
-![complex-relation](Images/complex.png)
-
-위 다이어그램처럼 구현한다면 각 컴포넌트는 경우에는 연관된 모든 컴포넌트에
-대해서 필드로 주입받고 그것을 제어하는 형태가 되어야 할 것 입니다. 로직은 여기저기
-흩어지게 되며 자칫 어떠한 룰이 변경되면 중복된 로직만큼 수정해야할 수 있습니다.
+`GuestCheckbox`를 구현한다고 생각해봅시다. 체크박스가 체크되면 각 인풋 필드는
+비활성화되어야 합니다. 또한 체크가 해제되면 적절하게 조건에 따라서 인풋 필드를
+활성화시켜야 합니다.
 
 ```csharp
 class GuestCheckBox : CheckBox
@@ -46,49 +39,60 @@ class GuestCheckBox : CheckBox
         _login = login;
         _username = username;
         _passwsord = passwsord;
-    }
 
-
-    void OnChanged()
-    {
-        if (Checked)
+        OnChanged += () =>
         {
-            _login.Disable(Checked);
-            _username.Disable(Checked);
-            _passwsord.Disable(!string.IsEmpty(_username.Value) && Checked);
-        }
-    }
-}
-
-class UsernameInput : TextInput
-{
-    // contructor and fields...
-
-    void OnChanged()
-    {
-        if (!string.IsEmpty(Value))
-        {
-            _password.Disable(false);
-
-            if (!string.IsEmpty(_password.Value))
+            if (Checked)
             {
-                _loginButton.Disable(false);
+                _login.Disable = Checked;
+                _username.Disable = Checked;
+                _passwsord.Disable = !string.IsEmpty(_username.Value) && Checked;
             }
-        }
+        };
     }
 }
 ```
 
-위 코드는 모든 컴포넌트(위젯)에 대해서 표현하진 않았지만 대략적으로 어떠한 코드가
-작성될지 예상하실 수 있습니다. 관리적으로도 코드에서 요구사항을 파악할 때에도
-분산된 코드에 따른 이유 때문에 아마 후임자가 들어온다면 원 작성자를 원망할지도
-모릅니다.
+그 다음은 `UsernameInput`을 구현해보겠습니다. `UsernameInput`은 빈 값이 아니면
+`PasswordInput`을 활성화 시켜야합니다. 또한 `PasswordInput`도 빈 값이 아니라면
+`LoginButton`을 활성화시켜야 합니다.
+
+```csharp
+class UsernameInput : TextInput
+{
+    // fields...
+
+    public UsernameInput()
+    {
+        OnChanged += () =>
+        {
+            if (!string.IsEmpty(Value))
+            {
+                _password.Disable = false;
+
+                if (!string.IsEmpty(_password.Value))
+                {
+                    _loginButton.Disable = false;
+                }
+            }
+        };
+    }
+}
+```
+이런 방식으로 구현하다 보면 다른 컴포넌트 또한 요구 사항에 따라서 자신 이외의 컴포넌트를
+주입받아서 제어하도록 구현됩니다. 이를 다이어그램을 표현하면 아래와 같을 것입니다.
+
+![complex-relation](Images/complex.png)
+
+모든 컴포넌트(위젯)에 대해서 작성하진 않았지만 대략적으로 어떠한 코드가 작성될지 예상하실 수 있습니다.
+로직은 여기저기 흩어지게 되며 자칫 어떠한 룰이 변경되면 중복된 로직만큼 수정해야할 수 있습니다.
+즉 코드의 관리 및 파악이 어려워지며 옆에 있는 동료를 괴롭게 만들 수 있습니다.
 
 ![added](Images/additional-request.png)
 
-또한 위와같이 `Input`필드가 하나라도 더 추가된다면 4개 혹은 그 이상의 연관 관계가
-추가됩니다. 폼에 N개의 항목이 서로 엮여 있는 요구사항이 있다면 최대 `SUM(1...N-1)`
-개의 연관 관계가 만들어질지도 모릅니다.
+위와 같이 `Input`필드가 하나라도 더 추가된다면 4개 혹은 그 이상의 연관 관계가
+추가됩니다. 폼에 N개의 항목이 서로 엮여 있는 요구사항이 있다면 최악의 경우
+`SUM(1...N-1)`개의 연관 관계가 만들어질지도 모릅니다.
 
 ## Solution
 
@@ -181,7 +185,7 @@ class UsernameInput : TextInput, IComponent
 
 ![solution](Images/SolutionERD.png)
 
-## Summery
+## Summary
 
 한 집합에 속해있는 객체의 상호작용을 캡슐화하는 객체를 정의합니다. 객체들이
 직접 서로를 참조하지 않도록 하여 객체 사이의 느슨한 결합(loose coupling)을
