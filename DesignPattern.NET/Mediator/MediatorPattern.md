@@ -87,8 +87,8 @@ class UsernameInput : TextInput
 ![added](Images/additional-request.png)
 
 또한 위와같이 `Input`필드가 하나라도 더 추가된다면 4개 혹은 그 이상의 연관 관계가
-추가됩니다. 이 같은 방식으로 어플리케이션을 개발하다 보면 굉장히 복잡하게 될
-가능성이 높습니다.
+추가됩니다. 폼에 N개의 항목이 서로 엮여 있는 요구사항이 있다면 최대 `SUM(1...N-1)`
+개의 연관 관계가 만들어질지도 모릅니다.
 
 ## Solution
 
@@ -140,7 +140,6 @@ class LoginFormDialog : IDialog
 `UpdateChanges`를 호출해줘야 합니다.
 
 ```csharp
-{
 interface IComponent : IDisable
 {
     LoginFormDialog Dialog { get; set; }
